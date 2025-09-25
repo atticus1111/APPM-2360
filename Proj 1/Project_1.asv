@@ -13,6 +13,7 @@ disp w;
 
 
 %dT/dt = 0.25(75 − T ), T (0) = 50
+% -ln|75-T| = C
 
 
 %on the interval [0, 24] using 240 points (stepsize h = 0.1). 
