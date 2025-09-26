@@ -1,8 +1,8 @@
 addpath('/Users/addi/Documents/MATLAB/APPM-2360/Proj 1');
 
 ti = 0;
-tf = 25;
-npts = 250;
+tf = 24;
+npts = 240;
 y0 = 50;
 
 %functions
