@@ -1,8 +1,6 @@
 addpath('/Users/addi/Documents/MATLAB/APPM-2360/Proj 1');
 
-function T= H(t)
- T = 7 *sech(3*(t-10)/4);
-end
+
 
 t =0:24;
 %y = H(t);          
@@ -20,14 +18,17 @@ npts = 240;
 y0 = 50;
 
 
-%functions
-function f= dTdt(t)
+plot(t,T(t))
 
-f=7*(sech(3*(t - 10)/4));
+[M,t_m] = max(T(t))
+
+function T= H(t)
+ T = 7 *sech(3*(t-10)/4);
 end
 
-%rkr call
-[t,w] = rk4(ti,tf,npts,y0,dTdt);
+%functions
+function T2 = T(t)
 
-plot(t,w)
+T2 = (28/3)*atan(sinh((3/4)*(t-10))) + 65 - (28/3)*atan(sinh(-(15/2)));
 
+end
