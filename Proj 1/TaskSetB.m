@@ -18,12 +18,13 @@ g = @(t) 75 - 25*exp(-0.25*t);
 
 u = g(t);
 
+% plot solved vs rk 
 hold on;
 plot (t,w, "r o")
 plot (t,g(t), "b-")
 
+%error plot
 plot (t,(g(t)-w),"k--")
 hold off
-
 
 
