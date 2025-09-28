@@ -1,31 +1,28 @@
 addpath('/Users/addi/Documents/MATLAB/APPM-2360/Proj 1');
 
-
-
 t =0:24;
-%y = H(t);          
+y = H(t);          
 
+%first plot
+%plot(t,T(t))
+
+%second plot
 plot(t,H(t),'b-o')
-xlabel('t')
-ylabel('T')
+
+xlabel('Time (hours)')
+ylabel('Temp (ºF)')
 grid on
 
 
-ti = 0;
-tf = 24;
-npts = 240;
-y0 = 50;
-
-
-plot(t,T(t))
-
+%finding max
 [M,t_m] = max(T(t))
 
+
+%functions
 function T= H(t)
  T = 7 *sech(3*(t-10)/4);
 end
 
-%functions
 function T2 = T(t)
 
 T2 = (28/3)*atan(sinh((3/4)*(t-10))) + 65 - (28/3)*atan(sinh(-(15/2)));

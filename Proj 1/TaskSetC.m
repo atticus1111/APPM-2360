@@ -1,44 +1,42 @@
-addpath('/Users/addi/Documents/MATLAB/APPM-2360/Proj 1');
+%statment of inital conditions and rk4 paramaters
+kappa = 0.25;
+h = 0.1;
+t0 = 0; tf = 24;
+t = t0:h:tf;
+n = length(t);
+T = zeros(1,n);
+T(1) = 65;
+M0 = 35;
+M = @(tt) M0 - 12*cos(pi*(tt-5)/12);
 
+%rk4 function
+for i = 1:n-1
+   ti = t(i);
+   yi = T(i);
+   f = @(tt, y) kappa*(M(tt)-y);
+   k1 = f(ti, yi);
+   k2 = f(ti + h/2, yi + h*k1/2);
+   k3 = f(ti + h/2, yi + h*k2/2);
+   k4 = f(ti + h, yi + h*k3);
+   T(i+1) = yi + (h/6)*(k1 + 2*k2 + 2*k3 + k4);
+end
 
-%DO NOT SUBMIT THIS CODE
-
-
-ti = 0;
-tf = 24;
-npts = 240;
-y0 = 50;
-
-% Solve with rk4
-[t_rk, w_rk] = rk4(ti,tf,npts,y0,@f);
-
-% Solve with ode45
-[t_ode, y_ode] = ode45(@h,[0 24],y0);
-
-% Exact solution
-t_exact = linspace(0,24,241);
-y_exact = g(t_exact);
-
-% Plot
-hold on
-plot(t_rk,w_rk,'bo-','DisplayName','RK4')
-plot(t_ode,y_ode,'r-','DisplayName','ode45')
-plot(t_exact,y_exact,'k--','DisplayName','Exact')
-xlabel('t')
-ylabel('T(t)')
-legend
+%plotting
+figure;
+plot(t, T, 'b-', 'LineWidth', 1.5); hold on
+plot(t, M(t), 'r--', 'LineWidth', 1.2)
+xlabel('time (hours)')
+ylabel('Temperature (^\circF)')
+title('M(t) and T(t), M0 = 35, T(0)=65')
+legend('T(t) - inside','M(t) - outside')
 grid on
-hold off
 
-% ---- ODEs ----
-function dTdt = f(~,T)
-    dTdt = 0.25*(75 - T);
-end
-
-function T = g(t)
-    T = 75 - 25*exp(-0.25*t);
-end
-
-function dydt = h(t,y) 
-    dydt = 0.25*(75 - 12*cos(pi*(t-5)/12) - y);
-end
+%finding maxes and mins
+[Tmin, idxMin] = min(T);
+[Tmax, idxMax] = max(T);
+tMin = t(idxMin);
+tMax = t(idxMax);
+fprintf('Minimum T(t): %.2f °F at t = %.2f hours\n', Tmin, tMin);
+fprintf('Maximum T(t): %.2f °F at t = %.2f hours\n', Tmax, tMax);
+plot(tMin, Tmin, 'bo', 'MarkerFaceColor', 'b', 'MarkerSize', 8);
+plot(tMax, Tmax, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8);

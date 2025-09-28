@@ -1,30 +1,33 @@
+
+%rk4 function was loaded into a sepearate file and called from this file
 addpath('/Users/addi/Documents/MATLAB/APPM-2360/Proj 1');
 
-
+%rk4 paramaters
 ti = 0;
 tf = 24;
 npts = 240;
 y0 = 50;
 
-%functions
+%functions: f is differential equation, g is exact solution
 f = @(t,T) 0.25*(75 - T);
+g = @(t) 75 - 25*exp(-0.25*t);
 
 %rkr call
 [t,w] = rk4(ti,tf,npts,y0,f);
 
 
-
-g = @(t) 75 - 25*exp(-0.25*t);
-
-u = g(t);
-
 % plot solved vs rk 
 hold on;
-plot (t,w, "r o")
-plot (t,g(t), "b-")
+%plot (t,w, "r o", DisplayName= 'RK aproximation')
+%plot (t,g(t), "b-", DisplayName= 'Exact value')
+%xlabel('Time (hours)')
+%ylabel('Temp (ºF)')
+%grid on
+legend
 
-%error plot
-plot (t,(g(t)-w),"k--")
+
+%error plot: commented out parts sepearatley to obtain diffrent graphs
+plot (t,(g(t)-w),"k--", DisplayName='Error')
 hold off
-
+legend
 
