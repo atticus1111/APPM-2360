@@ -11,7 +11,6 @@ ylabel('T')
 grid on
 
 
-
 ti = 0;
 tf = 24;
 npts = 240;
