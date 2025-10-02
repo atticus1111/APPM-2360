@@ -6,7 +6,7 @@ t = t0:h:tf;
 n = length(t);
 T = zeros(1,n);
 T(1) = 65;
-M0 = 75;
+M0 = 35;
 M = @(tt) M0 - 12*cos(pi*(tt-5)/12);
 %rk4 function
 for i = 1:n-1
@@ -42,7 +42,3 @@ plot(tMax, Tmax, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8);
 [Tmax, idxMax] = max(M(t));
 MMin = t(idxMin);
 MMax = t(idxMax);
-plot(MMin, Tmin, 'bo', 'MarkerFaceColor', 'b', 'MarkerSize', 8);
-plot(MMax, Tmax, 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8);
-fprintf('Minimum T(t): %.2f °F at t = %.2f hours\n', Tmin, tMin);
-fprintf('Maximum T(t): %.2f °F at t = %.2f hours\n', Tmax, tMax);
