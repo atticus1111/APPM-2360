@@ -38,10 +38,5 @@ DST matrix
 
 s_i,j=sqrt(2/n)sin((pi*(i-1/2)*(j-1/2))/n)
 
-use nested for loops 
-
-2d DSt X_g
-
-Y=SX_gS^t
 
 %}
