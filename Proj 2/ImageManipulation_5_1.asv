@@ -38,17 +38,21 @@ R = X_double(:,:,1);
 G = X_double(:,:,2);
 B = X_double(:,:,3);
 
+
 R_new = zeros(size(R));
 G_new = G;
 B_new = B + 80;
 B_new(B_new > 255) = 255; 
 B_new(B_new < 0) = 0;      
+
+
 color_modified = uint8(cat(3, R_new, G_new, B_new));
 
+% Display the original and modified images
 figure;
 subplot(1,2,1);
 imagesc(uint8(cat(3, R, G, B)));
-title('Original rectangle.jpg'); 
+title('Original rectangle.jpg'); % insert photo
 
 subplot(1,2,2);
 imagesc(color_modified);
