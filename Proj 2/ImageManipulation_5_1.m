@@ -53,4 +53,27 @@ title('Original rectangle.jpg');
 subplot(1,2,2);
 imagesc(color_modified);
 title('Modified Colors (No Red, +80 Blue)'); 
+%% 5.1.4
+% Invert Matrix
+
+[~, n] = size(R);
+E = eye(n);
+E(:, [1 n]) = E(:, [n 1]);
+R_swapped = R * E;
+G_swapped = G * E;
+B_swapped = B * E;
+swapped_image = uint8(cat(3, R_swapped, G_swapped, B_swapped));
+
+figure;
+subplot(1,2,1);
+imagesc(uint8(cat(3, R, G, B)));
+title('Original rectangle.jpg');
+
+subplot(1,2,2);
+imagesc(swapped_image);
+title('Swapped Leftmost and Rightmost Columns');
+figure;
+spy(E);
+title('Column Swap Transformation Matrix E');
+
 
