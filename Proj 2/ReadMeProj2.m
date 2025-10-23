@@ -81,3 +81,18 @@ Y=SX_gS^t
 %}
 
 
+
+
+%% 5.4
+
+
+%loop to switch maybe still usefull
+i2 = 3;
+for i = 1:3
+    j2 = 3;              
+    for j = 1:3
+        y(i,j) = A(i2,j2);
+        j2 = j2 - 1;
+    end
+    i2 = i2 - 1;          
+end 
