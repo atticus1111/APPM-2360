@@ -42,7 +42,6 @@ X_double = double(X_int);
 %
 % manipulate the image
 %
-figure;
 imwrite(uint8(X_double),'andorpart2.jpg')
 
 X_gray= X_double(:,:,1)/3.0 + X_double(:,:,2)/3.0 + X_double(:,:,3)/3.0;
@@ -51,15 +50,6 @@ imagesc(uint8(X_gray))
 
 colormap('gray')
 
-
-figure; 
-spy (X);
-
-
-figure;
-i=eye(300);
-
-spy(i);
 
 
 
