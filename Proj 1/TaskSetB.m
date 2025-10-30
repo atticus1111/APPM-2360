@@ -28,6 +28,8 @@ legend
 
 %error plot: commented out parts sepearatley to obtain diffrent graphs
 plot (t,(g(t)-w),"k--", DisplayName='Error')
+xlabel('Number of iterations')
+ylabel('Error')
 hold off
 legend
 
