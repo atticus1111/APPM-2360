@@ -54,7 +54,39 @@ title('Original rectangle.jpg');
 subplot(1,2,2);
 imagesc(color_modified);
 title('Modified Colors (No Red, +80 Blue)'); 
-%% 5.1.5
 
+%% 5.1.5
+% Horizontal Wrap-Around Shift by 306 pixels
+
+X = imread('rectangle.jpg');
+X_double = double(X);
+
+[rows, cols, channels] = size(X_double);
+shift = 306;  
+H = zeros(cols, cols);
+for i = 1:cols-shift
+    H(i+shift, i) = 1;
+end
+
+for i = cols-shift+1:cols
+    H(i-(cols-shift), i) = 1;
+end
+
+figure;
+spy(H);
+title('Circular Horizontal Shift Matrix (H)');
+
+X_shifted = zeros(size(X_double));
+for c = 1:channels
+    X_shifted(:,:,c) = X_double(:,:,c) * H;  
+end
+
+figure;
+subplot(1,2,1);
+imagesc(uint8(X_double));
+title('Original rectangle.jpg');
+subplot(1,2,2);
+imagesc(uint8(X_shifted));
+title('Horizontally Shifted (Wrap-Around, 306 pixels right)');
 
 
