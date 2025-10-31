@@ -210,36 +210,14 @@ X_double = double(X);
 
 [rows, cols, channels] = size(X_double);
 
-t=20; %border thickness
-
-%Itop is for the top and bottom borders
-Itop = eye(rows);
-%top
-Itop(1:t,:)=0;
-%bottom
-Itop(rows-t+1:rows,:)=0;
-
-
-%Isides is for the left and right borders
-Isides = eye(cols);
-%left
-Isides(:,1:t)=0;
-%right
-Isides(:,cols-t+1:cols)=0;
-
-figure;
-subplot(1,2,1);
-spy(Itop);
-title('Top and bottom border transformation matrix');
-subplot(1,2,2);
-spy(Isides);
-title('Left and right transformation matrix');
+I = eye(rows);
+I(1:5,:=0)
 
 
 
 X_border = zeros(size(X_double));
 for c = 1:channels
-    X_border(:,:,c) = Itop * X_double(:,:,c) * Isides;  
+    X_border(:,:,c) = X_double(:,:,c) .* I;  
 end
 
 
