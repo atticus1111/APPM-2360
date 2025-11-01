@@ -152,40 +152,20 @@ R = X_double(:,:,1);
 G = X_double(:,:,2);
 B = X_double(:,:,3);
 
-
-%-------------------------------------------- 0.5
-%redefining colors and running for p=0.5
-p=0.5;
+%redefining colors 
+p=0.05
 [R,R_T]=DSTelim(R,p);
 [G,G_T]=DSTelim(G,p);
 [B,B_T]=DSTelim(B,p);
 
-%compression numbers and ratios for p=0.5
 nnz1 = nnz(R) + nnz(G) + nnz(B)
 nnz2  = nnz(R_T) + nnz(G_T) + nnz(B_T)
-compression_ratio1 = nnz1 / nnz2
+compression_ratio = nnz1 / nnz2
 
-%-------------------------------------------- 0.25
-%redefining colors and running for p=0.25
-p=0.25;
-[R,R_T]=DSTelim(R,p);
-[G,G_T]=DSTelim(G,p);
-[B,B_T]=DSTelim(B,p);
 
-%compression numbers and ratios for p=0.25
-nnz1 = nnz(R) + nnz(G) + nnz(B)
-nnz2  = nnz(R_T) + nnz(G_T) + nnz(B_T)
-compression_ratio2 = nnz1 / nnz2
+%viewing
+color_modified = uint8(cat(3, R, G, B));
+imagesc(color_modified);
 
-%-------------------------------------------- 0.1
-%redefining colors and running for p=0.1
-p=0.1;
-[R,R_T]=DSTelim(R,p);
-[G,G_T]=DSTelim(G,p);
-[B,B_T]=DSTelim(B,p);
 
-%compression numbers and ratios for p=0.1
-nnz1 = nnz(R) + nnz(G) + nnz(B)
-nnz2  = nnz(R_T) + nnz(G_T) + nnz(B_T)
-compression_ratio3 = nnz1 / nnz2
 
